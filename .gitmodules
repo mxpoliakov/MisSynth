@@ -1,0 +1,3 @@
+[submodule "missci"]
+	path = missci
+	url = https://github.com/UKPLab/acl2024-missci
