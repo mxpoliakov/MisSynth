@@ -1,0 +1,8 @@
+exclude = ["missci/*"]
+fix = true
+
+[lint]
+select = ["I", "E", "F", "B", "Q", "UP", "SIM"]
+
+[lint.isort]
+force-single-line = true
