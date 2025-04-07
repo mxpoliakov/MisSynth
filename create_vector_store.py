@@ -9,6 +9,7 @@ from pypdf.errors import PdfStreamError
 from requests.exceptions import ConnectTimeout
 
 from common import DEFAULT_EMBEDDINGS_MODEL_NAME
+from common import DEFAULT_VECTOR_STORE_FILENAME
 from common import MissciDataset
 from missci.missci.util.fileutil import read_jsonl
 
@@ -16,11 +17,11 @@ from missci.missci.util.fileutil import read_jsonl
 def create_vector_store(
     embeddings_model_name: str = DEFAULT_EMBEDDINGS_MODEL_NAME,
     dataset: MissciDataset = MissciDataset.TEST,
-    vector_store_filename="vector_store.json",
+    vector_store_filename: str = DEFAULT_VECTOR_STORE_FILENAME,
     min_page_content_length: int = 1000,
     chunk_size: int = 512,
     chunk_overlap: int = 64,
-):
+) -> None:
     embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
     vector_store = InMemoryVectorStore(embeddings)
     bs4_strainer = bs4.SoupStrainer(["p"])
@@ -49,9 +50,7 @@ def create_vector_store(
 
     print(f"Loaded {valid_samples_count} out of {len(data)}")
 
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=chunk_size, chunk_overlap=chunk_overlap
-    )
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     all_splits = text_splitter.split_documents(docs)
 
     vector_store.add_documents(documents=all_splits)

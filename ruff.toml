@@ -1,8 +1,9 @@
 exclude = ["missci/*"]
 fix = true
+line-length = 120
 
 [lint]
-select = ["I", "E", "F", "B", "Q", "UP", "SIM"]
+select = ["I", "E", "F", "B", "Q", "UP", "SIM", "ANN", "TRY"]
 
 [lint.isort]
 force-single-line = true

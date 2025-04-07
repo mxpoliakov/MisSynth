@@ -176,3 +176,5 @@ cython_debug/
 # Repository specific:
 vector_stores/*
 !vector_stores/.gitkeep
+
+output/*

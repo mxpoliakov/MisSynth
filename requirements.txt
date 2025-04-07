@@ -1,6 +1,7 @@
 accelerate==1.6.0
 beautifulsoup4==4.13.3
 langchain-core==0.3.51
+langchain-openai==0.3.12
 langchain_community==0.3.21
 langchain_huggingface==0.1.2
 pypdf==5.4.0

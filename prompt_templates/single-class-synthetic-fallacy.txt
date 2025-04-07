@@ -1,0 +1,29 @@
+You are provided with a claim, an accurate premise for the claim, a list of real-world fallacious premises (fallacies)
+from the scientific article with the fallacy class, and relevant text exempt from this article.
+
+Claim:
+{claim}
+
+Accurate Premise:
+{premise}
+
+{fallacies}
+
+Article Excerpt:
+{article_excerpt}
+
+Task:
+Based on the example and relevant text from the article, create {n_synthetic_fallacies} synthetic fallacies that
+differ from the provided real-world fallacies and their class in the format:
+
+Synthetic Fallacy 1. Class - Class Name:
+Synthetic Fallacy 2. Class - Class Name:
+...
+Synthetic Fallacy {n_synthetic_fallacies}. Class - Class Name:
+
+Creating fallacies of the classes different from provided real-world examples is encouraged,
+but the class could be only from the fallacy inventory.
+
+{fallacy_inventory}
+
+Structure created fallacy text similarly to real-world examples.
