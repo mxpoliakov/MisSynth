@@ -1,0 +1,8 @@
+{
+    "python.analysis.extraPaths": [
+        "missci"
+    ],
+    "terminal.integrated.env.osx": {
+        "PYTHONPATH": "${workspaceFolder}:${workspaceFolder}/missci"
+    }
+}

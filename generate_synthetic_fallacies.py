@@ -10,7 +10,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from common import DEFAULT_EMBEDDINGS_MODEL_NAME
 from common import DEFAULT_VECTOR_STORE_FILENAME
 from common import MissciDataset
-from missci.missci.util.fileutil import read_jsonl
+from missci.util.fileutil import read_jsonl
 
 
 def get_fallacy_inventory() -> str:

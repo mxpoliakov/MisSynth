@@ -11,7 +11,7 @@ from requests.exceptions import ConnectTimeout
 from common import DEFAULT_EMBEDDINGS_MODEL_NAME
 from common import DEFAULT_VECTOR_STORE_FILENAME
 from common import MissciDataset
-from missci.missci.util.fileutil import read_jsonl
+from missci.util.fileutil import read_jsonl
 
 
 def create_vector_store(
