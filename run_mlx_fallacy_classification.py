@@ -7,9 +7,9 @@ from mlx_lm import generate
 from mlx_lm import load
 
 from common import DEFAULT_SYSTEM_PROMPT
-from common import MissciDataset
-from missci.data.missci_data_loader import MissciDataLoader
+from common import MissciSplit
 from missci.prompt_templates.classify_generate_template_filler import ClassifyGenerateTemplateFiller
+from missci.util.fileutil import read_jsonl
 from missci.util.fileutil import read_text
 from missci.util.fileutil import write_jsonl
 
@@ -45,21 +45,24 @@ class MLXClassifyGenerateTemplateFiller(ClassifyGenerateTemplateFiller):
 def query_mlx_model(
     model_name: str,
     prompt_template: str,
-    dataset: MissciDataset,
-    instances: list[dict],
+    split: MissciSplit,
+    data: list[dict],
     template_filler: MLXClassifyGenerateTemplateFiller,
     output_folder: str,
+    adapter_path: str | None = None,
     seed: int = 1,
 ) -> None:
     mlx.core.random.seed(seed)
-    model, tokenizer = load(f"mlx-community/{model_name}", adapter_path=None)
-
-    dest_name = f"{model_name}_{prompt_template.replace('/', '_').replace('.txt', '')}_{dataset}.jsonl"
+    model, tokenizer = load(f"mlx-community/{model_name}", adapter_path=adapter_path)
+    dest_base_name = f"{model_name}_{prompt_template.replace('/', '_').replace('.txt', '')}_{split}"
+    if adapter_path is not None:
+        dest_base_name += f"_{adapter_path}"
+    dest_name = f"{dest_base_name}.jsonl"
     log_params: dict = {"template": prompt_template, "seed": seed}
-
+    replace_map = [("Fallacy of Division/Composition", "Fallacy of Composition")]
     predictions = []
-    for argument in instances:
-        prompt_tasks = template_filler.get_prompts(argument)
+    for sample in data:
+        prompt_tasks = template_filler.get_prompts(sample)
         for prompt_task in prompt_tasks:
             prompt: str = prompt_task["prompt"]
             data: dict = prompt_task["data"]
@@ -67,6 +70,8 @@ def query_mlx_model(
                 messages = [{"role": "user", "content": prompt}]
                 prompt = tokenizer.apply_chat_template(messages, add_generation_prompt=True)
             answer = generate(model, tokenizer, prompt=prompt, verbose=False)
+            for replace_from, replace_to in replace_map:
+                answer = answer.replace(replace_from, replace_to)
             result = {"answer": answer}
             print(result)
             result["params"] = log_params
@@ -79,18 +84,20 @@ def query_mlx_model(
 def run_mlx_fallacy_classification(
     model_name: str = "phi-4-8bit",
     prompt_template: str = "cls_without_premise/p4-connect-cls-D.txt",
-    dataset: MissciDataset = MissciDataset.DEV,
+    split: MissciSplit = MissciSplit.DEV,
     output_folder: str = "missci/predictions/only-classify-raw",
+    adapter_path: str | None = None,
 ) -> None:
-    instances = MissciDataLoader("missci/dataset").load_raw_arguments(dataset)
+    data = list(read_jsonl(f"missci/dataset/{split}.missci.jsonl"))
     template_filler = MLXClassifyGenerateTemplateFiller(prompt_template)
     query_mlx_model(
         model_name=model_name,
         prompt_template=prompt_template,
-        dataset=dataset,
-        instances=instances,
+        split=split,
+        data=data,
         template_filler=template_filler,
         output_folder=output_folder,
+        adapter_path=adapter_path,
     )
 
 

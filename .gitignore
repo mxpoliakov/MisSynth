@@ -178,3 +178,4 @@ vector_stores/*
 !vector_stores/.gitkeep
 
 output/*
+adapters/*

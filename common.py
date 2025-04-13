@@ -11,6 +11,6 @@ Answer in the most direct and concise way possible.
 """
 
 
-class MissciDataset(StrEnum):
+class MissciSplit(StrEnum):
     DEV = "dev"
     TEST = "test"

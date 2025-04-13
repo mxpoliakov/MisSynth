@@ -10,13 +10,13 @@ from requests.exceptions import ConnectTimeout
 
 from common import DEFAULT_EMBEDDINGS_MODEL_NAME
 from common import DEFAULT_VECTOR_STORE_FILENAME
-from common import MissciDataset
+from common import MissciSplit
 from missci.util.fileutil import read_jsonl
 
 
 def create_vector_store(
     embeddings_model_name: str = DEFAULT_EMBEDDINGS_MODEL_NAME,
-    dataset: MissciDataset = MissciDataset.TEST,
+    split: MissciSplit = MissciSplit.TEST,
     vector_store_filename: str = DEFAULT_VECTOR_STORE_FILENAME,
     min_page_content_length: int = 1000,
     chunk_size: int = 512,
@@ -27,7 +27,7 @@ def create_vector_store(
     bs4_strainer = bs4.SoupStrainer(["p"])
     docs = []
     valid_samples_count = 0
-    data = list(read_jsonl(f"missci/dataset/{dataset}.missci.jsonl"))
+    data = list(read_jsonl(f"missci/dataset/{split}.missci.jsonl"))
     for sample in data:
         url = sample["study"]["url"]
         if "pdf" in url:

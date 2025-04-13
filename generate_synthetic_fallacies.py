@@ -9,7 +9,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 from common import DEFAULT_EMBEDDINGS_MODEL_NAME
 from common import DEFAULT_VECTOR_STORE_FILENAME
-from common import MissciDataset
+from common import MissciSplit
 from missci.util.fileutil import read_jsonl
 
 
@@ -56,7 +56,7 @@ def get_real_world_fallacies(argument_fallacies: list[dict]) -> str:
 
 def generate_synthetic_fallacies(
     embeddings_model_name: str = DEFAULT_EMBEDDINGS_MODEL_NAME,
-    dataset: MissciDataset = MissciDataset.TEST,
+    split: MissciSplit = MissciSplit.TEST,
     vector_store_filename: str = DEFAULT_VECTOR_STORE_FILENAME,
     model_name: str = "o3-mini",
     prompt_template: str = "single-class-synthetic-fallacy",
@@ -71,7 +71,7 @@ def generate_synthetic_fallacies(
     output_path = Path(f"output/{model_name}-{prompt_template}-{n_synthetic_fallacies}/raw")
     output_path.mkdir(parents=True, exist_ok=True)
 
-    for sample in read_jsonl(f"missci/dataset/{dataset}.missci.jsonl"):
+    for sample in read_jsonl(f"missci/dataset/{split}.missci.jsonl"):
         url = sample["study"]["url"]
         argument = sample["argument"]
         fallacies = get_real_world_fallacies(argument["fallacies"])
