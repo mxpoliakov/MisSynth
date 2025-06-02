@@ -1,0 +1,28 @@
+You are provided with a claim, an accurate premise, a list of real-world fallacious premises (fallacies)
+from the scientific article with the fallacy class, and relevant text exempt from this article.
+
+Claim:
+{claim}
+
+Accurate Premise:
+{premise}
+
+{fallacies}
+
+Article Excerpt:
+{article_excerpt}
+
+Task:
+Based on the example and relevant text from the article, create {n_synthetic_entries} synthetic claim and accurate premise pairs that
+differ from the provided real-world premises in the format. Make sure that the created claim-accurate premise pair is coherent.
+
+Synthetic Claim 1:
+Synthetic Accurate Premise 1:
+
+Synthetic Claim 2:
+Synthetic Premise 2:
+...
+Synthetic Claim {n_synthetic_entries}:
+Synthetic Premise {n_synthetic_entries}:
+
+Structure created claims and accurate premises text similarly to real-world examples.

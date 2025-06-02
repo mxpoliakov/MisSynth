@@ -27,7 +27,7 @@ def get_prompt(
     premise: str,
     fallacies: str,
     article_excerpt: str,
-    n_synthetic_fallacies: int,
+    n_synthetic_entries: int,
 ) -> str:
     with open(f"prompt_templates/{prompt_template}.txt") as f:
         template_content = f.read()
@@ -39,7 +39,7 @@ def get_prompt(
         premise=premise,
         fallacies=fallacies,
         article_excerpt=article_excerpt,
-        n_synthetic_fallacies=n_synthetic_fallacies,
+        n_synthetic_entries=n_synthetic_entries,
         fallacy_inventory=fallacy_inventory,
     )
 
@@ -54,21 +54,21 @@ def get_real_world_fallacies(argument_fallacies: list[dict]) -> str:
     return fallacies
 
 
-def generate_synthetic_fallacies(
+def generate_synthetic_data(
     embeddings_model_name: str = DEFAULT_EMBEDDINGS_MODEL_NAME,
     split: MissciSplit = MissciSplit.TEST,
     vector_store_filename: str = DEFAULT_VECTOR_STORE_FILENAME,
     model_name: str = "o3-mini",
     prompt_template: str = "single-class-synthetic-fallacy",
     similarity_search_k: int = 5,
-    n_synthetic_fallacies: int = 20,
+    n_synthetic_entries: int = 20,
     temperature: float = 1.0,
 ) -> None:
     embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
     vector_store = InMemoryVectorStore.load(f"vector_stores/{vector_store_filename}", embeddings)
     model = init_chat_model(model_name, temperature=temperature)
 
-    output_path = Path(f"output/{model_name}-{prompt_template}-{n_synthetic_fallacies}/raw")
+    output_path = Path(f"output/{model_name}-{prompt_template}-{n_synthetic_entries}/raw")
     output_path.mkdir(parents=True, exist_ok=True)
 
     for sample in read_jsonl(f"missci/dataset/{split}.missci.jsonl"):
@@ -89,12 +89,13 @@ def generate_synthetic_fallacies(
                 premise=argument["accurate_premise_p0"]["premise"],
                 article_excerpt=article_excerpt,
                 fallacies=fallacies,
-                n_synthetic_fallacies=n_synthetic_fallacies,
+                n_synthetic_entries=n_synthetic_entries,
             )
+
             response = model.invoke(prompt)
             with open(output_path / f"{sample['id']}.txt", "w") as f:
                 f.write(response.content)
 
 
 if __name__ == "__main__":
-    typer.run(generate_synthetic_fallacies)
+    typer.run(generate_synthetic_data)
