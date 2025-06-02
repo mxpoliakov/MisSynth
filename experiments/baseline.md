@@ -21,7 +21,7 @@ Generate synthetic fallacies based on [single class prompt template](../prompt_t
 
 ```bash
 export OPENAI_API_KEY=...
-python generate_synthetic_data.py --prompt_template single-class-synthetic-fallacy
+python generate_synthetic_data.py --prompt-template single-class-synthetic-fallacy
 ```
 ### Fine-tune LLM on synthetic fallacies
 Create a dataset using raw data from the previous step. For the baseline experiment, we will classify fallacies without premise using [p1-basic template](../missci/prompt_templates/gen_cls/p1-basic-D.txt). Given the synthetic fallacies generated, we can fill out the template and provide responses to fine-tune the LLM. Let's fine-tune [Phi-4 from Microsoft](https://huggingface.co/mlx-community/phi-4-8bit) with synthetic fallacies.
@@ -29,7 +29,7 @@ Create a dataset using raw data from the previous step. For the baseline experim
 ```bash
 python create_fine_tuning_dataset.py --raw-output-folders o3-mini-single-class-synthetic-fallacy-20
 
-python -m mlx_lm.lora --model mlx-community/phi-4-8bit --data output/o3-mini-single-class-synthetic-fallacy-20 \
+python -m mlx_lm.lora --model mlx-community/phi-4-8bit --data output \
 --train --fine-tune-type lora --batch-size 1 --num-layers 16 --iters 1000 --adapter-path adapters
 ```
 
@@ -37,7 +37,7 @@ python -m mlx_lm.lora --model mlx-community/phi-4-8bit --data output/o3-mini-sin
 Benchmark on dev missci split to avoid data leakage:
 ```bash
 python run_mlx_fallacy_classification.py --model-name phi-4-8bit
-python run_mlx_fallacy_classification.py--model-name phi-4-8bit --adapter-path adapters
+python run_mlx_fallacy_classification.py --model-name phi-4-8bit --adapter-path adapters
 ```
 ```bash
 cd missci
