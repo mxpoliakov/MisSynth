@@ -1,9 +1,9 @@
 accelerate==1.6.0
 beautifulsoup4==4.13.3
 docopt==0.6.2
-langchain-core==0.3.51
-langchain-openai==0.3.12
-langchain_community==0.3.21
+langchain-core==0.3.68
+langchain-openai==0.3.27
+langchain_community==0.3.27
 langchain_huggingface==0.1.2
 mlx-lm==0.22.2
 pypdf==5.4.0

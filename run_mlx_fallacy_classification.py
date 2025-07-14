@@ -8,7 +8,7 @@ from mlx_lm import load
 
 from common import DEFAULT_SYSTEM_PROMPT
 from common import MissciSplit
-from missci.prompt_templates.classify_generate_template_filler import ClassifyGenerateTemplateFiller
+from missci.prompt_templates.fallacy_classify_template_filler import FallacyWiseTemplateFiller
 from missci.util.fileutil import read_jsonl
 from missci.util.fileutil import read_text
 from missci.util.fileutil import write_jsonl
@@ -26,7 +26,7 @@ def filled_template_to_prompt(filled_template: str) -> str:
     return filled_template
 
 
-class MLXClassifyGenerateTemplateFiller(ClassifyGenerateTemplateFiller):
+class MLXClassifyGenerateTemplateFiller(FallacyWiseTemplateFiller):
     def __init__(self, prompt_template_name: str) -> None:
         self.prompt_template_name = prompt_template_name
         self.dest_file_prefix = ""
@@ -59,7 +59,7 @@ def query_mlx_model(
         dest_base_name += f"_{adapter_path}"
     dest_name = f"{dest_base_name}.jsonl"
     log_params: dict = {"template": prompt_template, "seed": seed}
-    replace_map = [("Fallacy of Division/Composition", "Fallacy of Composition")]
+    replace_map = [("Fallacy: Fallacy of Division/Composition", "Fallacy: Fallacy of Composition")]
     predictions = []
     for sample in data:
         prompt_tasks = template_filler.get_prompts(sample)
@@ -71,7 +71,8 @@ def query_mlx_model(
                 prompt = tokenizer.apply_chat_template(messages, add_generation_prompt=True)
             answer = generate(model, tokenizer, prompt=prompt, verbose=False)
             for replace_from, replace_to in replace_map:
-                answer = answer.replace(replace_from, replace_to)
+                if replace_from.lower() in answer.lower():
+                    answer = replace_to
             result = {"answer": answer}
             print(result)
             result["params"] = log_params
@@ -83,9 +84,9 @@ def query_mlx_model(
 
 def run_mlx_fallacy_classification(
     model_name: str = "phi-4-8bit",
-    prompt_template: str = "cls_without_premise/p4-connect-cls-D.txt",
-    split: MissciSplit = MissciSplit.DEV,
-    output_folder: str = "missci/predictions/only-classify-raw",
+    prompt_template: str = "cls_with_premise/classify-D.txt",
+    split: MissciSplit = MissciSplit.TEST,
+    output_folder: str = "missci/predictions/classify-given-gold-premise-raw",
     adapter_path: str | None = None,
 ) -> None:
     data = list(read_jsonl(f"missci/dataset/{split}.missci.jsonl"))

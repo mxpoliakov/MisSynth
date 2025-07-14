@@ -14,15 +14,22 @@ Article Excerpt:
 
 Task:
 Based on the example and relevant text from the article, create {n_synthetic_entries} synthetic claim and accurate premise pairs that
-differ from the provided real-world premises in the format. Make sure that the created claim-accurate premise pair is coherent.
+differ from the provided real-world premises in the JSON format. Make sure that the created claim-accurate premise pair is coherent.
 
-Synthetic Claim 1:
-Synthetic Accurate Premise 1:
-
-Synthetic Claim 2:
-Synthetic Premise 2:
-...
-Synthetic Claim {n_synthetic_entries}:
-Synthetic Premise {n_synthetic_entries}:
+[
+    {{
+        "premise": // Synthetic Accurate Premise 1,
+        "claim": // Synthetic Claim 1,
+    }},
+    {{
+        "premise": // Synthetic Accurate Premise 2,
+        "claim": // Synthetic Claim 2,
+    }},
+    ...
+    {{
+        "premise": // Synthetic Accurate Premise {n_synthetic_entries},
+        "claim": // Synthetic Claim {n_synthetic_entries},
+    }}
+]
 
 Structure created claims and accurate premises text similarly to real-world examples.

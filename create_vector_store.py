@@ -16,7 +16,7 @@ from missci.util.fileutil import read_jsonl
 
 def create_vector_store(
     embeddings_model_name: str = DEFAULT_EMBEDDINGS_MODEL_NAME,
-    split: MissciSplit = MissciSplit.TEST,
+    split: MissciSplit = MissciSplit.DEV,
     vector_store_filename: str = DEFAULT_VECTOR_STORE_FILENAME,
     min_page_content_length: int = 1000,
     chunk_size: int = 512,

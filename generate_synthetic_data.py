@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import typer
@@ -50,18 +51,21 @@ def get_real_world_fallacies(argument_fallacies: list[dict]) -> str:
         for interchangeable_fallacy in fallacy["interchangeable_fallacies"]:
             fallacy_class = interchangeable_fallacy["class"]
             fallacy_premise = interchangeable_fallacy["premise"]
-            fallacies += f"\nReal-world fallacy {i + 1}. Class - {fallacy_class}:\n{fallacy_premise}\n"
+            context = fallacy.get("fallacy_context", "")
+            fallacies += (
+                f"\nContext {i + 1}: {context}\nFallacy {i + 1}: {fallacy_premise}\nClass {i + 1}: {fallacy_class}\n\n"
+            )
     return fallacies
 
 
 def generate_synthetic_data(
     embeddings_model_name: str = DEFAULT_EMBEDDINGS_MODEL_NAME,
-    split: MissciSplit = MissciSplit.TEST,
+    split: MissciSplit = MissciSplit.DEV,
     vector_store_filename: str = DEFAULT_VECTOR_STORE_FILENAME,
     model_name: str = "o3-mini",
-    prompt_template: str = "single-class-synthetic-fallacy",
+    prompt_template: str = "single-class-synthetic-fallacy-context",
     similarity_search_k: int = 5,
-    n_synthetic_entries: int = 20,
+    n_synthetic_entries: int = 30,
     temperature: float = 1.0,
 ) -> None:
     embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
@@ -91,10 +95,10 @@ def generate_synthetic_data(
                 fallacies=fallacies,
                 n_synthetic_entries=n_synthetic_entries,
             )
-
             response = model.invoke(prompt)
-            with open(output_path / f"{sample['id']}.txt", "w") as f:
-                f.write(response.content)
+            response_json = json.loads(response.content)
+            with open(output_path / f"{sample['id']}.json", "w") as f:
+                json.dump(response_json, f, indent=4)
 
 
 if __name__ == "__main__":
