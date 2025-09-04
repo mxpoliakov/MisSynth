@@ -11,7 +11,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 ### Vector store
-Create JSON vector store based on scraped articles (web, pdf) from MISSCI test split. 130 out of 154 articles were scraped and vectorized using [NeuML/pubmedbert-base-embeddings](https://huggingface.co/NeuML/pubmedbert-base-embeddings) with a chunk size of 512 and chunk overlap of 64.
+Create JSON vector store based on scraped articles (web, pdf) from MISSCI dev split. All 30 articles were scraped and vectorized using [NeuML/pubmedbert-base-embeddings](https://huggingface.co/NeuML/pubmedbert-base-embeddings) with a chunk size of 512 and chunk overlap of 64.
 ```bash
 python create_vector_store.py
 ```
@@ -52,9 +52,10 @@ python run-fallacy-classification-with-gold-premise.py parse-llm-output phi-4-8b
 it_cls_with_premise_classify-D_test_adapters.jsonl
 ```
 
-| Model                     | Vanilla acc    | Vanilla F1    | Finetune acc | Finetune F1 | Lora layers | Params |
-|---------------------------|----------------|---------------|--------------|-------------|-------------|--------|
-| LLaMA 2                   | 0.577 (*)      | 0.464 (*)     | -            | -           | -           | 70B    |
-| Phi-4 (8-bit)             | 0.667 (*)      | 0.550 (*)     | 0.791        | 0.693       | 32          | 15B    |
+| Model           | Vanilla acc    | Vanilla F1    | Finetune acc | Finetune F1 | Lora layers | Params |
+|-----------------|----------------|---------------|--------------|-------------|-------------|--------|
+| LLaMA 2         | 0.577 (*)      | 0.464 (*)     | -            | -           | -           | 70B    |
+| LLaMA 2 (4-bit) | 0.326          | 0.218         | 0.654        | 0.620       | 32          | 13B    |
+| Phi-4 (8-bit)   | 0.667          | 0.550         | 0.791        | 0.693       | 32          | 15B    |
 
 \* Table 3 from [MISSCI: Reconstructing Fallacies in Misrepresented Science](https://arxiv.org/pdf/2406.03181)
