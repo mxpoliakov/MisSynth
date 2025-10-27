@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 import typer
@@ -12,6 +13,16 @@ from common import DEFAULT_EMBEDDINGS_MODEL_NAME
 from common import DEFAULT_VECTOR_STORE_FILENAME
 from common import MissciSplit
 from missci.util.fileutil import read_jsonl
+
+
+def clean_json_string(string: str) -> str:
+    string = string.strip()
+
+    if string.startswith("```json") and string.endswith("```"):
+        string = re.sub(r"^```json\s*", "", string)
+        string = re.sub(r"\s*```$", "", string)
+
+    return string.strip()
 
 
 def get_fallacy_inventory() -> str:
@@ -62,7 +73,8 @@ def generate_synthetic_data(
     embeddings_model_name: str = DEFAULT_EMBEDDINGS_MODEL_NAME,
     split: MissciSplit = MissciSplit.DEV,
     vector_store_filename: str = DEFAULT_VECTOR_STORE_FILENAME,
-    model_name: str = "o3-mini",
+    model_name: str = "o4-mini",
+    model_provider: str | None = "openai",
     prompt_template: str = "single-class-synthetic-fallacy-context",
     similarity_search_k: int = 5,
     n_synthetic_entries: int = 30,
@@ -70,7 +82,7 @@ def generate_synthetic_data(
 ) -> None:
     embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
     vector_store = InMemoryVectorStore.load(f"vector_stores/{vector_store_filename}", embeddings)
-    model = init_chat_model(model_name, temperature=temperature)
+    model = init_chat_model(model_name, model_provider=model_provider, temperature=temperature)
 
     output_path = Path(f"output/{model_name}-{prompt_template}-{n_synthetic_entries}/raw")
     output_path.mkdir(parents=True, exist_ok=True)
@@ -96,9 +108,12 @@ def generate_synthetic_data(
                 n_synthetic_entries=n_synthetic_entries,
             )
             response = model.invoke(prompt)
-            response_json = json.loads(response.content)
-            with open(output_path / f"{sample['id']}.json", "w") as f:
-                json.dump(response_json, f, indent=4)
+            try:
+                response_json = json.loads(clean_json_string(response.content))
+                with open(output_path / f"{sample['id']}.json", "w") as f:
+                    json.dump(response_json, f, indent=4)
+            except json.JSONDecodeError:
+                pass
 
 
 if __name__ == "__main__":
