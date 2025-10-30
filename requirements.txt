@@ -6,6 +6,8 @@ langchain-openai==0.3.27
 langchain_community==0.3.27
 langchain_huggingface==0.1.2
 mlx-lm==0.28.2
+pandas==2.3.3
 pypdf==5.4.0
 python-lorem==1.3.0.post3
+rouge_score==0.1.2
 typer-slim==0.15.2
