@@ -13,6 +13,9 @@ from missci.util.fileutil import read_jsonl
 from missci.util.fileutil import read_text
 from missci.util.fileutil import write_jsonl
 
+# Generation cap per answer (greedy decoding).
+MAX_TOKENS = 1024
+
 
 def filled_template_to_prompt(filled_template: str) -> str:
     if "@@system_prompt@@" in filled_template:
@@ -42,23 +45,36 @@ class MLXClassifyGenerateTemplateFiller(FallacyWiseTemplateFiller):
             }
 
 
+def get_prediction_filename(model_name: str, prompt_template: str, dataset_name: str, adapter_path: str | None) -> str:
+    """Prediction file name, unique per model, template, dataset and adapter."""
+    template = prompt_template.replace("/", "_").replace(".txt", "")
+    name = f"{model_name}_{template}_{dataset_name}"
+    if adapter_path is not None:
+        adapter_name = os.path.basename(os.path.normpath(adapter_path)).removeprefix("adapters_")
+        adapter_name = adapter_name.removeprefix(f"{model_name}_")
+        name += f"_{adapter_name}"
+    return f"{name}.jsonl"
+
+
 def query_mlx_model(
     model_name: str,
     prompt_template: str,
-    split: MissciSplit,
+    dataset_name: str,
     data: list[dict],
     template_filler: MLXClassifyGenerateTemplateFiller,
     output_folder: str,
     adapter_path: str | None = None,
     seed: int = 1,
+    overwrite: bool = False,
 ) -> None:
     mlx.core.random.seed(seed)
     model, tokenizer = load(f"mlx-community/{model_name}", adapter_path=adapter_path)
-    dest_base_name = f"{model_name}_{prompt_template.replace('/', '_').replace('.txt', '')}_{split}"
-    if adapter_path is not None:
-        dest_base_name += f"_{adapter_path}"
-    dest_name = f"{dest_base_name}.jsonl"
-    log_params: dict = {"template": prompt_template, "seed": seed}
+    dest_name = get_prediction_filename(model_name, prompt_template, dataset_name, adapter_path)
+    dest_path = os.path.join(output_folder, dest_name)
+    if os.path.exists(dest_path) and not overwrite:
+        message = f"{dest_path} exists; pass --overwrite to replace it"
+        raise FileExistsError(message)
+    log_params: dict = {"template": prompt_template, "seed": seed, "max_tokens": MAX_TOKENS}
     replace_map = [("Fallacy: Fallacy of Division/Composition", "Fallacy: Fallacy of Composition")]
     predictions = []
     for sample in data:
@@ -69,7 +85,7 @@ def query_mlx_model(
             if tokenizer.chat_template is not None:
                 messages = [{"role": "user", "content": prompt}]
                 prompt = tokenizer.apply_chat_template(messages, add_generation_prompt=True)
-            answer = generate(model, tokenizer, prompt=prompt, verbose=False)
+            answer = generate(model, tokenizer, prompt=prompt, max_tokens=MAX_TOKENS, verbose=False)
             for replace_from, replace_to in replace_map:
                 if replace_from.lower() in answer.lower():
                     answer = replace_to
@@ -79,7 +95,7 @@ def query_mlx_model(
             result["data"] = data
             predictions.append(result)
 
-    write_jsonl(os.path.join(output_folder, dest_name), predictions)
+    write_jsonl(dest_path, predictions)
 
 
 def run_mlx_fallacy_classification(
@@ -89,17 +105,21 @@ def run_mlx_fallacy_classification(
     output_folder: str = "missci/predictions/classify-given-gold-premise-raw",
     adapter_path: str | None = None,
     dataset_path: str | None = None,
+    overwrite: bool = False,
 ) -> None:
     data = list(read_jsonl(dataset_path or f"missci/dataset/{split}.missci.jsonl"))
+    # e.g. "test" for the MISSCI split, "mafalda"/"logic" for the cross-dataset files
+    dataset_name = os.path.basename(dataset_path).split(".")[0] if dataset_path else str(split)
     template_filler = MLXClassifyGenerateTemplateFiller(prompt_template)
     query_mlx_model(
         model_name=model_name,
         prompt_template=prompt_template,
-        split=split,
+        dataset_name=dataset_name,
         data=data,
         template_filler=template_filler,
         output_folder=output_folder,
         adapter_path=adapter_path,
+        overwrite=overwrite,
     )
 
 

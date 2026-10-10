@@ -1,0 +1,120 @@
+{"id": "arg-90#06", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-155#05", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-40#03", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-49#08", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-164#14", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-29#11", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["False Dilemma / Affirming the Disjunct", "Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-90#02", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Biased Sample Fallacy"], "comment": "", "inconsistency": null}
+{"id": "arg-107#07", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["Biased Sample Fallacy", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-37#05", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["False Equivalence", "Biased Sample Fallacy"], "comment": "", "inconsistency": null}
+{"id": "arg-49#04", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-99#06", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-10#03", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-72#05", "annotator": "VN", "fallacious": false, "grounded": "contradicts", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-12#08", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-12#12", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-12#14", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-41#07", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-65#11", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Biased Sample Fallacy"], "comment": "", "inconsistency": null}
+{"id": "arg-37#14", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-72#07", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-137#02", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-68#03", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-34#00", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-10#07", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Ambiguity", "False Equivalence"], "comment": "", "inconsistency": null}
+{"id": "arg-148#11", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Causal Oversimplification", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-46#04", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-82#04", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-72#11", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-97#01", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["Fallacy of Exclusion"], "comment": "Context: The study only counted RT\u2010PCR\u2013confirmed COVID\u201019 cases and ignored potential asymptomatic infections. Asymptomatic cases would be also confirmed by RT-PCR.", "inconsistency": null}
+{"id": "arg-72#09", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Hasty Generalization", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-69#05", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-42#03", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-10#14", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["False Equivalence", "Biased Sample Fallacy"], "comment": "", "inconsistency": null}
+{"id": "arg-10#09", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-37#08", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-58#09", "annotator": "VN", "fallacious": false, "grounded": "contradicts", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-20#05", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Hasty Generalization", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-46#09", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["Hasty Generalization", "Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-19#00", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-29#02", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-49#14", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-155#12", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-148#09", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-58#01", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-99#07", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Hasty Generalization", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-65#12", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-46#01", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-107#09", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Division/Composition"], "comment": "confusion over tetanus vaccine and birth control vaccine", "inconsistency": null}
+{"id": "arg-99#14", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Ambiguity", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-82#12", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-29#04", "annotator": "VN", "fallacious": false, "grounded": "contradicts", "classes": ["Biased Sample Fallacy", "Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-90#12", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Biased Sample Fallacy"], "comment": "", "inconsistency": null}
+{"id": "arg-97#03", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-97#07", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Biased Sample Fallacy", "Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-152#11", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-72#14", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-148#04", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-19#08", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["False Dilemma / Affirming the Disjunct", "None of these"], "comment": "", "inconsistency": "NONE_WITH_CLASS"}
+{"id": "arg-79#06", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-19#05", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["False Dilemma / Affirming the Disjunct", "Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-49#07", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Biased Sample Fallacy", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-58#04", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["Hasty Generalization", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-49#11", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-34#03", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-171#12", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-20#01", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-68#01", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-148#05", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["False Equivalence"], "comment": "", "inconsistency": null}
+{"id": "arg-68#07", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-29#12", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-90#09", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-97#13", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-82#05", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["False Equivalence"], "comment": "", "inconsistency": null}
+{"id": "arg-58#12", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-99#12", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Hasty Generalization", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-97#09", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Biased Sample Fallacy"], "comment": "", "inconsistency": null}
+{"id": "arg-19#02", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-12#04", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Biased Sample Fallacy", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-65#10", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-164#13", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-90#04", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Biased Sample Fallacy", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-90#01", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["False Equivalence"], "comment": "", "inconsistency": null}
+{"id": "arg-40#04", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-41#14", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-29#00", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-12#07", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-58#05", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["False Equivalence"], "comment": "", "inconsistency": null}
+{"id": "arg-29#03", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-46#07", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-41#02", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-152#06", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Biased Sample Fallacy"], "comment": "", "inconsistency": null}
+{"id": "arg-40#05", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["Biased Sample Fallacy", "Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-155#00", "annotator": "VN", "fallacious": false, "grounded": "supported", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-97#10", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Biased Sample Fallacy"], "comment": "", "inconsistency": null}
+{"id": "arg-19#10", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-79#03", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-152#04", "annotator": "VN", "fallacious": false, "grounded": "not_in_excerpt", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-155#04", "annotator": "VN", "fallacious": false, "grounded": "contradicts", "classes": ["False Equivalence"], "comment": "", "inconsistency": null}
+{"id": "arg-82#06", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-164#01", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-37#03", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Impossible Expectations"], "comment": "", "inconsistency": null}
+{"id": "arg-12#11", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-67#09", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Biased Sample Fallacy", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-97#04", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-40#11", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-79#00", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-72#00", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Hasty Generalization", "Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-42#11", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-164#07", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["False Equivalence"], "comment": "", "inconsistency": null}
+{"id": "arg-65#13", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Biased Sample Fallacy", "Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-67#12", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Biased Sample Fallacy", "Fallacy of Exclusion"], "comment": "", "inconsistency": null}
+{"id": "arg-137#12", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Fallacy of Division/Composition"], "comment": "", "inconsistency": null}
+{"id": "arg-82#09", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["None of these"], "comment": "", "inconsistency": null}
+{"id": "arg-82#14", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["False Equivalence"], "comment": "", "inconsistency": null}
+{"id": "arg-20#04", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-69#13", "annotator": "VN", "fallacious": false, "grounded": "contradicts", "classes": ["Causal Oversimplification"], "comment": "", "inconsistency": null}
+{"id": "arg-40#12", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Hasty Generalization"], "comment": "", "inconsistency": null}
+{"id": "arg-79#09", "annotator": "VN", "fallacious": true, "grounded": "supported", "classes": ["Ambiguity"], "comment": "", "inconsistency": null}
+{"id": "arg-164#00", "annotator": "VN", "fallacious": true, "grounded": "contradicts", "classes": ["False Dilemma / Affirming the Disjunct"], "comment": "", "inconsistency": null}
+{"id": "arg-148#03", "annotator": "VN", "fallacious": true, "grounded": "not_in_excerpt", "classes": ["Biased Sample Fallacy", "Causal Oversimplification"], "comment": "", "inconsistency": null}

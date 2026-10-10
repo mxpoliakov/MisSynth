@@ -9,6 +9,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from common import DEFAULT_EMBEDDINGS_MODEL_NAME
 from common import DEFAULT_VECTOR_STORE_FILENAME
 from common import MissciSplit
+from generate_synthetic_data import get_fallacy_inventory
 from missci.util.fileutil import read_jsonl
 from missci.util.fileutil import write_jsonl
 
@@ -19,6 +20,26 @@ def get_output_json(raw_output_folder: str, sample_id: str) -> list[dict]:
             return json.load(f)
     except FileNotFoundError:
         return None
+
+
+def get_inventory_classes() -> list[str]:
+    """Class names of the fallacy inventory given to the generation LLM."""
+    lines = [line.strip() for line in get_fallacy_inventory().splitlines()[1:]]
+    return [line.removesuffix(":") for line in lines if line.endswith(":") and not line.startswith("Definition")]
+
+
+def get_release_class(synthetic_class: str, inventory_classes: list[str]) -> str:
+    """Inventory class a generated class name starts with, e.g. "Ambiguity" for "Ambiguity (Definition 2)"."""
+    matches = [c for c in inventory_classes if synthetic_class and synthetic_class.startswith(c)]
+    return max(matches, key=len) if matches else synthetic_class
+
+
+def get_synthetic_fallacies(raw_output_folder: str, sample_id: str) -> list[dict]:
+    synthetic_fallacies = get_output_json(raw_output_folder, sample_id)
+    inventory_classes = get_inventory_classes()
+    for synthetic_fallacy in synthetic_fallacies or []:
+        synthetic_fallacy["class"] = get_release_class(synthetic_fallacy["class"], inventory_classes)
+    return synthetic_fallacies
 
 
 def create_unified_dataset(
@@ -56,7 +77,7 @@ def create_unified_dataset(
 
         for raw_output_folder in raw_output_folders:
             if "single-class-synthetic-fallacy" in raw_output_folder:
-                row["synthetic_fallacies"] = get_output_json(raw_output_folder, sample["id"])
+                row["synthetic_fallacies"] = get_synthetic_fallacies(raw_output_folder, sample["id"])
             elif "synthetic-claim-premise" in raw_output_folder:
                 row["synthetic_claims_and_premises"] = get_output_json(raw_output_folder, sample["id"])
             else:

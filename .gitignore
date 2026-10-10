@@ -178,4 +178,7 @@ vector_stores/*
 !vector_stores/.gitkeep
 
 output/*
-adapters/*
+trained_adapters*/
+human_validation/raw/
+*.gs
+*.sh

@@ -14,26 +14,24 @@ Each row has a ``source_article`` (text) column and a fallacy label column.
 
 Mapping rationale
 -----------------
-Only 6 of 13 Logic classes have a reasonable semantic overlap with the MISSCI
-taxonomy (which targets scientific-communication fallacies).  The 7 remaining
-classes (mostly credibility-, emotion-, relevance-, and authority-based) have no
-MISSCI counterpart and are skipped.
+Only 4 of 13 Logic classes have a one-to-one counterpart in the MISSCI
+taxonomy (which targets scientific-communication fallacies).  The 9 remaining
+classes have no MISSCI counterpart and are skipped.
 
-Mapped Logic → MISSCI classes (6):
+Mapped Logic → MISSCI classes (4):
     equivocation            → Ambiguity
     false causality         → Causal Oversimplification
     false dilemma           → False Dilemma / Affirming the Disjunct
     faulty generalization   → Hasty Generalization
-    fallacy of logic        → False Equivalence
-    circular reasoning      → Ambiguity
 
-Unmapped Logic classes (7):
+Unmapped Logic classes (9):
     ad hominem, ad populum, appeal to emotion, fallacy of credibility,
-    fallacy of extension, fallacy of relevance, intentional
+    fallacy of extension, fallacy of relevance, intentional,
+    circular reasoning, fallacy of logic
 
-MISSCI classes with no Logic equivalent (4):
+MISSCI classes with no Logic equivalent (5):
     Biased Sample Fallacy, Fallacy of Division/Composition,
-    Fallacy of Exclusion, Impossible Expectations
+    Fallacy of Exclusion, Impossible Expectations, False Equivalence
 """
 
 from __future__ import annotations
@@ -51,8 +49,6 @@ LOGIC_TO_MISSCI: dict[str, str] = {
     "false causality": "Causal Oversimplification",
     "false dilemma": "False Dilemma / Affirming the Disjunct",
     "faulty generalization": "Hasty Generalization",
-    "fallacy of logic": "False Equivalence",
-    "circular reasoning": "Ambiguity",
 }
 
 MISSCI_CLASSES_COVERED = sorted(set(LOGIC_TO_MISSCI.values()))

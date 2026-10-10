@@ -1,5 +1,6 @@
 import json
 import os
+import random
 from copy import copy
 
 import lorem
@@ -106,22 +107,61 @@ def add_synthetic_claim_premise_prompts(
                 )
 
 
+def add_gold_fallacy_prompts(dataset_list: list[dict], prompt_template: str, sample: dict) -> None:
+    for fallacy in sample["argument"]["fallacies"]:
+        for interchangeable_fallacy in fallacy["interchangeable_fallacies"]:
+            dataset_list.append(
+                {
+                    "prompt": get_prompt(
+                        prompt_template,
+                        claim=sample["argument"]["claim"],
+                        premise=sample["argument"]["accurate_premise_p0"]["premise"],
+                        context=fallacy.get("context", ""),
+                        fallacy_text=interchangeable_fallacy["premise"],
+                    ),
+                    "completion": f"Fallacy: {interchangeable_fallacy['class']}",
+                }
+            )
+
+
 def create_fine_tuning_dataset(
     prompt_template: str = "cls_with_premise/classify-D.txt",
     split: MissciSplit = MissciSplit.DEV,
     raw_output_folders: list[str] | None = None,
     random_baseline: bool = False,
+    gold_only: bool = False,
+    train_ids_file: str | None = None,
+    output_dir: str = "output",
+    seed: int = 0,
 ) -> None:
-    if raw_output_folders is None:
+    """Build instruction/completion files for LoRA fine-tuning.
+
+    With ``train_ids_file`` only the listed dev arguments build the training set, and the gold fallacies of
+    the other arguments form the validation set. With ``gold_only`` the training set is the gold fallacies alone.
+    """
+    random.seed(seed)  # lorem sentences for the random baseline
+    if gold_only:
+        raw_output_folders = []
+    elif raw_output_folders is None:
         raw_output_folders = [output_file for output_file in os.listdir("output") if ".jsonl" not in output_file]
 
     data = list(read_jsonl(f"missci/dataset/{split}.missci.jsonl"))
+    train_ids = None
+    if train_ids_file is not None:
+        with open(train_ids_file) as f:
+            train_ids = {line.strip() for line in f if line.strip()}
+        unknown = train_ids - {sample["id"] for sample in data}
+        assert not unknown, f"ids not in {split} split: {sorted(unknown)}"
 
     train_dataset_list = []
     val_dataset_list = []
 
     for sample in data:
+        in_train = train_ids is None or sample["id"] in train_ids
+        in_val = train_ids is None or sample["id"] not in train_ids
         for raw_output_folder in raw_output_folders:
+            if not in_train:
+                continue
             if "single-class-synthetic-fallacy" in raw_output_folder:
                 add_synthetic_fallacies_prompts(
                     train_dataset_list, raw_output_folder, prompt_template, sample, random_baseline
@@ -133,23 +173,14 @@ def create_fine_tuning_dataset(
             else:
                 message = f"{raw_output_folder} has no valid parser functions"
                 raise ValueError(message)
-        for fallacy in sample["argument"]["fallacies"]:
-            for interchangeable_fallacy in fallacy["interchangeable_fallacies"]:
-                val_dataset_list.append(
-                    {
-                        "prompt": get_prompt(
-                            prompt_template,
-                            claim=sample["argument"]["claim"],
-                            premise=sample["argument"]["accurate_premise_p0"]["premise"],
-                            context=fallacy.get("context", ""),
-                            fallacy_text=interchangeable_fallacy["premise"],
-                        ),
-                        "completion": f"Fallacy: {interchangeable_fallacy['class']}",
-                    }
-                )
+        if gold_only and in_train:
+            add_gold_fallacy_prompts(train_dataset_list, prompt_template, sample)
+        if in_val:
+            add_gold_fallacy_prompts(val_dataset_list, prompt_template, sample)
     print(f"Train samples: {len(train_dataset_list)}. Val samples: {len(val_dataset_list)}")
-    write_jsonl("output/train.jsonl", train_dataset_list)
-    write_jsonl("output/valid.jsonl", val_dataset_list)
+    os.makedirs(output_dir, exist_ok=True)
+    write_jsonl(os.path.join(output_dir, "train.jsonl"), train_dataset_list)
+    write_jsonl(os.path.join(output_dir, "valid.jsonl"), val_dataset_list)
 
 
 if __name__ == "__main__":

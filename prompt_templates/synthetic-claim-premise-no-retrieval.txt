@@ -1,0 +1,32 @@
+You are provided with a claim, an accurate premise, and a list of real-world fallacious premises (fallacies)
+from the scientific article with the fallacy class.
+
+Claim:
+{claim}
+
+Accurate Premise:
+{premise}
+
+{fallacies}
+
+Task:
+Based on the example, create {n_synthetic_entries} synthetic claim and accurate premise pairs that
+differ from the provided real-world premises in the JSON format. Make sure that the created claim-accurate premise pair is coherent.
+
+[
+    {{
+        "premise": // Synthetic Accurate Premise 1,
+        "claim": // Synthetic Claim 1,
+    }},
+    {{
+        "premise": // Synthetic Accurate Premise 2,
+        "claim": // Synthetic Claim 2,
+    }},
+    ...
+    {{
+        "premise": // Synthetic Accurate Premise {n_synthetic_entries},
+        "claim": // Synthetic Claim {n_synthetic_entries},
+    }}
+]
+
+Structure created claims and accurate premises text similarly to real-world examples.

@@ -7,17 +7,17 @@ evaluation JSONL in the same record structure as missci/dataset/*.missci.jsonl
 
 Mapping rationale
 -----------------
-Only 6 of 23 MAFALDA classes have a reasonable semantic overlap with the
-MISSCI taxonomy (which targets scientific-communication fallacies). The 17
-remaining classes (mostly emotion- and credibility-based) have no MISSCI
-counterpart and are skipped.
+Only 7 of 23 MAFALDA classes have a reasonable semantic overlap with the
+MISSCI taxonomy (which targets scientific-communication fallacies) and map to
+6 MISSCI classes. The 16 remaining classes (mostly emotion- and credibility-based)
+have no MISSCI counterpart and are skipped, as are the "nothing" and "to clean" pseudo-labels.
 
-Unmapped MAFALDA classes (17):
+Unmapped MAFALDA classes (16):
     appeal to positive emotion, appeal to anger, appeal to fear, appeal to
     pity, appeal to ridicule, appeal to worse problems, circular reasoning,
     slippery slope, straw man, ad hominem, ad populum, appeal to (false)
     authority, appeal to nature, appeal to tradition, guilt by association,
-    tu quoque, nothing
+    tu quoque
 
 MISSCI classes with no MAFALDA equivalent (3):
     Impossible Expectations, Biased Sample Fallacy, Fallacy of Exclusion
@@ -87,7 +87,7 @@ def convert_mafalda_to_missci(records: list[dict]) -> list[dict]:
     adopt the following adaptation:
 
       - **claim**: the full paragraph text
-      - **accurate_premise_p0**: "(see full text in claim)"
+      - **accurate_premise_p0**: the full paragraph text
       - **fallacy_context**: the full paragraph text (Premise 2 / context)
       - **fallacious_premise**: the annotated fallacious span text
 
@@ -132,6 +132,7 @@ def convert_mafalda_to_missci(records: list[dict]) -> list[dict]:
                             "premise": fallacious_span,
                             "class": missci_class,
                             "id": f"{fallacy_id}:1",
+                            "source_class": mafalda_class,
                         }
                     ],
                 }
@@ -146,7 +147,7 @@ def convert_mafalda_to_missci(records: list[dict]) -> list[dict]:
                 "argument": {
                     "claim": text.strip(),
                     "accurate_premise_p0": {
-                        "premise": "(see full text in claim)",
+                        "premise": text.strip(),
                     },
                     "fallacies": fallacies,
                 },
